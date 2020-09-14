@@ -16,7 +16,7 @@ A simple rich text field renderer to display the full contents of a rich text HT
 - PnP PowerShell: Ensure you have the latest version of the [SharePointPnPPowerShellOnline](https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-pnp/sharepoint-pnp-cmdlets?view=sharepoint-ps) module installed.
 
 ### Installation
-1. Download the SPFx package [rich-text-field-renderer.sppkg](./raw/master/sharepoint/solution/rich-text-field-renderer.sppkg) file from Github (or clone the repo and build the package yourself)
+1. Download the SPFx package [rich-text-field-renderer.sppkg](./sharepoint/solution/rich-text-field-renderer.sppkg) file from Github (or clone the repo and build the package yourself)
 2. Upload sppkg file to the 'Apps for SharePoint' library in your Tenant App Catalog
 3. Click the 'Make this solution available to all sites in your organization' checkbox and then click Deploy
 4. Connect to the target site(s), then configure each list or site field that requires the Custom Rich Text Renderer using steps below.
