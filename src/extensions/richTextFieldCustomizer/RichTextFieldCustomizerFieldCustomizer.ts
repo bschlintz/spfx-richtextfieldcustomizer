@@ -12,7 +12,7 @@ export default class RichTextFieldCustomizerFieldCustomizer extends BaseFieldCus
   @override
   public onRenderCell(event: IFieldCustomizerCellEventParameters): void {
     event.domElement.innerHTML = event.fieldValue;
-    event.domElement.classList.add(styles.cell);
+    event.domElement.classList.add(styles.RichTextFieldCustomizer);
   }
 
   @override

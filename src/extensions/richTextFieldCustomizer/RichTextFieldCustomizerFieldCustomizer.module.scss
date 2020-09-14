@@ -1,6 +1,5 @@
 .RichTextFieldCustomizer {
-  .cell {
-    padding-top: 11px;
-    white-space: normal;
-  }
+  padding-top: 11px;
+  white-space: normal;
+  word-break: break-word;
 }
