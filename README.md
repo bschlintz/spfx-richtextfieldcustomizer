@@ -1,68 +1,65 @@
-# spfx-richtextfieldcustomizer
+# Rich Text Field Renderer
 
 ## Summary
 
-Short summary on functionality and used technologies.
+A simple rich text field renderer to display the full contents of a rich text HTML field. Normally a rich text field will get truncated in a list or library view if the contents consume too much vertical space. This SPFx field customizer will display the entire contents of the field without vertical truncation. See screenshot below for comparison.
 
-[picture of the solution in action, if possible]
+![Comparison between default and custom field renderer](./docs/ScreenshotCompare.png)
 
 ## Used SharePoint Framework Version
 
 ![version](https://img.shields.io/badge/version-1.11-green.svg)
 
-## Applies to
+## Setup Instructions
+### Pre-requisites
+- App Catalog: Ensure the [App Catalog](https://docs.microsoft.com/en-us/sharepoint/use-app-catalog) is setup in your SharePoint Online tenant
+- PnP PowerShell: Ensure you have the latest version of the [SharePointPnPPowerShellOnline](https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-pnp/sharepoint-pnp-cmdlets?view=sharepoint-ps) module installed.
 
-- [SharePoint Framework](https://aka.ms/spfx)
-- [Microsoft 365 tenant](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
+### Installation
+1. Download the SPFx package [rich-text-field-renderer.sppkg](./sharepoint/solution/rich-text-field-renderer.sppkg) file from Github (or clone the repo and build the package yourself)
+2. Upload sppkg file to the 'Apps for SharePoint' library in your Tenant App Catalog
+3. Click the 'Make this solution available to all sites in your organization' checkbox and then click Deploy
+4. Connect to the target site(s), then configure each list or site field that requires the Custom Rich Text Renderer using steps below.
+   #### PnP PowerShell
+   ```powershell
+   Connect-PnPOnline -Url "https://tenant.sharepoint.com/sites/target"
+   
+   # Connect the custom field renderer to a target field
+   # Run the following command for each field that requires the renderer
+   Set-PnPField -List "<<List Title>>" -Identity "<<Field Internal Name>>" -Values @{ ClientSideComponentId = [Guid]::new("2a3318bf-6c55-4c14-acee-b5da9c314cc2") }
+   ```
 
-> Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/o365devprogram)
+### Updates
+Follow the same steps as installation. Overwrite the existing package in the 'Apps for SharePoint' library when uploading the new package. 
 
-## Prerequisites
+> __Tip__: Be sure to check-in the sppkg file after the deployment if it is left checked-out.
 
-> Any special pre-requisites?
+## Removal
 
-## Solution
+### Uninstall from a Site or Web
+1. Unregister the SPFx extension on your target SharePoint site(s) using one of the methods below.
+   #### PnP PowerShell
+   ```powershell
+   Connect-PnPOnline -Url "https://tenant.sharepoint.com/sites/target"
+   
+   # Disconnect the custom field renderer from a target field
+   # Run the following command for each field that should no longer use the renderer 
+   Set-PnPField -List "<<List Title>>" -Identity "<<Field Internal Name>>" -Values @{ ClientSideComponentId = $null }
+   ```
 
-Solution|Author(s)
---------|---------
-folder name | Author details (name, company, twitter alias with link)
+### Uninstall from Tenant
+1. Follow steps to uninstall the SPFx extension from all sites.
+2. Delete the `rich-text-field-renderer.sppkg` file from the 'Apps for SharePoint' library in your Tenant App Catalog.
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
-1.1|March 10, 2021|Update comment
-1.0|January 29, 2021|Initial release
+1.0|September 14, 2020|Initial release
 
 ## Disclaimer
 
-**THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
-
----
-
-## Minimal Path to Awesome
-
-- Clone this repository
-- Ensure that you are at the solution folder
-- in the command-line run:
-  - **npm install**
-  - **gulp serve**
-
-> Include any additional steps as needed.
-
-## Features
-
-Description of the extension that expands upon high-level summary above.
-
-This extension illustrates the following concepts:
-
-- topic 1
-- topic 2
-- topic 3
-
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
+Microsoft provides programming examples for illustration only, without warranty either expressed or implied, including, but not limited to, the implied warranties of merchantability and/or fitness for a particular purpose. We grant You a nonexclusive, royalty-free right to use and modify the Sample Code and to reproduce and distribute the object code form of the Sample Code, provided that You agree: (i) to not use Our name, logo, or trademarks to market Your software product in which the Sample Code is embedded; (ii) to include a valid copyright notice on Your software product in which the Sample Code is embedded; and (iii) to indemnify, hold harmless, and defend Us and Our suppliers from and against any claims or lawsuits, including attorneys' fees, that arise or result from the use or distribution of the Sample Code.
 
 ## References
 

@@ -13,22 +13,9 @@
       "privacyUrl": "",
       "termsOfUseUrl": "",
       "mpnId": ""
-    },
-    "features": [
-      {
-        "title": "Application Extension - Deployment of custom action.",
-        "description": "Deploys a custom action with ClientSideComponentId association",
-        "id": "c4b877ed-3107-4bf5-8a56-81b92ae31bd3",
-        "version": "1.0.0.0",
-        "assets": {
-          "elementManifests": [
-            "elements.xml"
-          ]
-        }
-      }
-    ]
+    }
   },
   "paths": {
-    "zippedPackage": "solution/spfx-richtextfieldcustomizer.sppkg"
+    "zippedPackage": "solution/rich-text-field-renderer.sppkg"
   }
 }
